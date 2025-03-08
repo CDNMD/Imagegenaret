@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google 3D Image Search</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
+            color: red;
+            overflow: hidden;
+        }
+        .top-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+        h2 {
+            margin: 0;
+            font-size: 25px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            background: #00ffcc;
+            color:  purple;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background:  #00cc99 ;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 100px;
+        }
+        /* Snowfall effect */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 10px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Search Box + Heading එක Screen එකේ ඉහළට -->
+    <div class="top-container">
+        <h2>ＣＨＡＬＡＨ IMG DOWNLODE </h2>
+        <input type="text" id="search" placeholder="Search ( ＣＨＡＬＡＨ  | ᥫ᭡) ">
+        <button onclick="searchImage()">Search</button>
+    </div>
+
+    <div class="container">
+        <!-- Screen එකේ අනිත් Content එක මැද තියනවා -->
+    </div>
+
+    <script>
+        function searchImage() {
+            let query = document.getElementById("search").value;
+            if (!query) return;
+
+            // Google Image Search URL
+            let url = `https://www.google.com/search?tbm=isch&q=${query}`;
+
+            // Open Google Image Search in new tab
+            window.open(url, "_blank");
+        }
+
+        // Snowfall Effect
+        function createSnowflake() {
+            const snowflake = document.createElement("div");
+            snowflake.classList.add("snowflake");
+            snowflake.innerHTML = "🦠";
+            document.body.appendChild(snowflake);
+
+            let size = Math.random() * 10 + 10;
+            snowflake.style.fontSize = size + "px";
+
+            snowflake.style.left = Math.random() * window.innerWidth + "px";
+            snowflake.style.animationDuration = Math.random() * 5 + 3 + "s";
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 8000);
+        }
+
+        setInterval(createSnowflake, 100);
+    </script>
+
+</body>
+</html>
